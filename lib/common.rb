@@ -5,7 +5,7 @@ module ChurchCommunityBuilder
 
   def self.admin_request(method, path, params = {}, body = '')
     headers = self._build_admin_headers(method, path, params, body)
-    url = THE_CITY_ADMIN_PATH+path
+    url = CCB_ADMIN_PATH + path
 
     response =
     case method
@@ -22,15 +22,15 @@ module ChurchCommunityBuilder
 
     unless response.success?
       if response.code > 0
-        raise TheCityExceptions::UnableToConnectToTheCity.new(response.body)
+        raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new(response.body)
       else
         begin
           error_messages = JSON.parse(response.body)['error_message']
         rescue
           response_code_desc = response.headers.partition("\r\n")[0].sub(/^\S+/, '') rescue nil
-          raise TheCityExceptions::UnknownErrorConnectingToTheCity.new("Unknown error when connecting to The City.#{response_code_desc}")
+          raise ChurchCommunityBuilderExceptions::UnknownErrorConnectingToChurchCommunityBuilder.new("Unknown error when connecting to The City.#{response_code_desc}")
         else
-          raise TheCityExceptions::TheCityResponseError.new(error_messages)
+          raise ChurchCommunityBuilderExceptions::ChurchCommunityBuilderResponseError.new(error_messages)
         end
       end
     end    
@@ -50,14 +50,14 @@ module ChurchCommunityBuilder
     current_time = Time.now.to_i.to_s
     string_to_sign = current_time.to_s + method_request + url
 
-    unencoded_hmac = OpenSSL::HMAC.digest('sha256', TheCity::AdminApi.api_key, string_to_sign)
+    unencoded_hmac = OpenSSL::HMAC.digest('sha256', ChurchCommunityBuilder::AdminApi.api_key, string_to_sign)
     unescaped_hmac = Base64.encode64(unencoded_hmac).chomp
     hmac_signature = CGI.escape(unescaped_hmac)
 
     {'X-City-Sig' => hmac_signature,
-     'X-City-User-Token' => TheCity::AdminApi.api_token,
+     'X-City-User-Token' => ChurchCommunityBuilder::AdminApi.api_token,
      'X-City-Time' => current_time,
-     'Accept' => 'application/vnd.thecity.admin.v1+json',
+     'Accept' => 'application/vnd.ChurchCommunityBuilder.admin.v1+json',
      'Content-Type' => 'application/json',
      'Content-Length' => body.length}
   end 

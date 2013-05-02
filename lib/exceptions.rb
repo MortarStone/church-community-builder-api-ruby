@@ -1,5 +1,5 @@
 module ChurchCommunityBuilderExceptions
-  class UnableToConnectToTheCity < StandardError; end
-  class UnknownErrorConnectingToTheCity < StandardError; end
-  class TheCityResponseError < StandardError; end
+  class UnableToConnectToChurchCommunityBuilder < StandardError; end
+  class UnknownErrorConnectingToChurchCommunityBuilder < StandardError; end
+  class ChurchCommunityBuilderResponseError < StandardError; end
 end
