@@ -1,0 +1,53 @@
+= The Church Community Builder API
+
+This Ruby project is an API wrapper for Church Community Builder API.
+
+
+== Install / Setup
+
+Installing the gem
+
+    gem install church-community-builder
+
+
+To add it to your Gemfile
+
+    gem 'church-community-builder', :require => 'ccb_api'
+
+
+Add your church's API Token and API Key to [RAILS_ROOT]/config/initializers/ccb_config.rb
+
+    CCB_KEY = '**** YOUR CCB API KEY ****'
+    CCB_TOKEN = '**** YOUR CCB API TOKEN ****'
+
+
+Next you will need to initialize a connection
+
+    ChurchCommunityBuilder::Api.connect(CCB_KEY, CCB_TOKEN)
+
+
+
+== Example usage
+
+  Checkout the examples folder.
+
+
+== Additional resources
+
+
+
+== License
+
+This project is released under the MIT license (see LICENSE).
+
+This project is maintained by Wes Hays (https://github.com/weshays).
+
+
+== Contributors
+
+Chad Feller: https://github.com/cfeller
+
+
+== Want to Contribute?
+
+If you would like to get involved in this project, then please fork the project. Make changes, add features, write some tests, and then send us a pull request. 
