@@ -1,6 +1,6 @@
-module TheCity
+module ChurchCommunityBuilder
 
-  # This class is the base class for all TheCity objects and is meant to be inherited.
+  # This class is the base class for all ChurchCommunityBuilder objects and is meant to be inherited.
   #
   class ApiObject
     attr_reader :error_messages, :marked_for_destruction
@@ -64,34 +64,48 @@ module TheCity
     end
 
 
-    # Save this object.
-    #
-    # @return True on success, otherwise false.
-    def save
-      writer = @writer_object.new(self.to_attributes) 
-      result = writer.save_object
-      if result === false
-        @error_messages = writer.error_messages
-      else
-        self.set_attributes(result)
-      end
-      result === false ? false : true
+    # # Save this object.
+    # #
+    # # @return True on success, otherwise false.
+    # def save
+    #   writer = @writer_object.new(self.to_attributes) 
+    #   result = writer.save_object
+    #   if result === false
+    #     @error_messages = writer.error_messages
+    #   else
+    #     self.set_attributes(result)
+    #   end
+    #   result === false ? false : true
+    # end
+
+
+    # # Delete this object.
+    # #
+    # # @return True on success, otherwise false.
+    # def delete
+    #   writer = @writer_object.new(self.to_attributes) 
+    #   result = writer.delete_object
+    #   if result === false
+    #     @error_messages = writer.error_messages
+    #   else
+    #     @_deleted = true
+    #   end
+    #   result === false ? false : true
+    # end
+
+    private
+
+    def _attr_underscore(str)
+      str.gsub(/::/, '/')
+         .gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+         .gsub(/([a-z\d])([A-Z])/,'\1_\2')
+         .tr("-", "_")
+         .downcase
     end
 
-
-    # Delete this object.
-    #
-    # @return True on success, otherwise false.
-    def delete
-      writer = @writer_object.new(self.to_attributes) 
-      result = writer.delete_object
-      if result === false
-        @error_messages = writer.error_messages
-      else
-        @_deleted = true
-      end
-      result === false ? false : true
-    end    
+    def _xml2json(xml)
+      Hash.from_xml(xml).to_json
+    end
 
   end
 

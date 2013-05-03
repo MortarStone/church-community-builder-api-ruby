@@ -29,7 +29,7 @@ require File.dirname(__FILE__) + '/common.rb'
 # This class is meant to be a wrapper ChurchCommunityBuilder Admin API (OnChurchCommunityBuilder.org).
 module ChurchCommunityBuilder
 
-  class AdminApi
+  class Api
     class << self
       attr_reader :api_key, :api_token
     end
