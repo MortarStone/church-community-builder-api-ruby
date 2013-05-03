@@ -1,5 +1,7 @@
 module ChurchCommunityBuilder
 
+  require 'colored' #temporary, for pretty debugging
+
   # This class is the base class for all ChurchCommunityBuilder objects and is meant to be inherited.
   #
   class ApiObject
@@ -7,16 +9,16 @@ module ChurchCommunityBuilder
     
 
     # Used to specify a list of getters and setters.
-    def self.tc_attr_accessor(*vars)
-      @__tc_attributes ||= []
-      @__tc_attributes.concat(vars)
+    def self.ccb_attr_accessor(*vars)
+      @__ccb_attributes ||= []
+      @__ccb_attributes.concat(vars)
       attr_accessor(*vars)
     end
 
 
-    # A list of tc_attr_accessors that have been specified.
-    def self.__tc_attributes
-      @__tc_attributes
+    # A list of ccb_attr_accessors that have been specified.
+    def self.__ccb_attributes
+      @__ccb_attributes
     end
 
     # Initializes the current object from the JSON data that was loaded into the Hash
@@ -25,11 +27,14 @@ module ChurchCommunityBuilder
     def initialize_from_json_object(object_attributes)
       if object_attributes.is_a?( Hash )
         object_attributes.each do |key, value| 
+
           method_to_call = "#{key.to_s.downcase.gsub(' ', '_')}="
+          
           if respond_to?(method_to_call)
+            puts "Sending :=> ".green + method_to_call.to_s + value.to_s
             self.send(method_to_call, value) 
           else
-            # puts method_to_call  # Show the missing methods
+            puts "Missing :=> ".red + method_to_call.to_s  # Show the missing methods
           end
         end
       end     
@@ -47,7 +52,7 @@ module ChurchCommunityBuilder
     def to_attributes 
       vals = {}
       vals = {:marked_for_destruction => self.is_deleted?} if self.is_deleted?
-      self.class.__tc_attributes.each do |tca| 
+      self.class.__ccb_attributes.each do |tca| 
         rep = self.send(tca)               
         if rep.class == Array   
           rep.collect! { |r| r.respond_to?(:to_attributes) ? r.to_attributes : r }

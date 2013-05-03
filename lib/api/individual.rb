@@ -2,7 +2,7 @@ module ChurchCommunityBuilder
 
   include Enumerable
 
-  Class Individual < ApiObject
+  class Individual < ApiObject
 
   	ccb_attr_accessor :id,
 											:sync_id,
@@ -46,6 +46,11 @@ module ChurchCommunityBuilder
 											:modified
 
 
+    def initialize(json_data = nil, options = {})
+      #@writer_object = PersonWriter
+      initialize_from_json_object(json_data) unless json_data.nil?
+    end
+
   end
 
 end
@@ -60,4 +65,3 @@ end
   									# 	:city,
   									# 	:state,
   									# 	:zip,
-  									
