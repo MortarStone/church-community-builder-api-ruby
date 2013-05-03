@@ -1,12 +1,14 @@
-require 'rubygems'
-require 'openssl'
-require 'cgi'
-require 'base64'
-require 'openssl'
-require 'net/http'
-require 'net/https'
+# require 'rubygems'
+# require 'openssl'
+# require 'cgi'
+# require 'base64'
+# require 'openssl'
+# require 'net/http'
+# require 'net/https'
+require 'yaml'
 require 'typhoeus'
 require 'json'
+require 'active_support/core_ext'
 
 
 CCB_ENV = 'production' unless defined?(CCB_ENV)
