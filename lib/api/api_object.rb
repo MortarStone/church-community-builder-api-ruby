@@ -108,10 +108,6 @@ module ChurchCommunityBuilder
          .downcase
     end
 
-    def _xml2json(xml)
-      Hash.from_xml(xml).to_json
-    end
-
   end
 
 end
