@@ -50,10 +50,13 @@ module ChurchCommunityBuilder
       #@writer_object = PersonWriter
       
       # When we initialize from IndividualReader, the "Individual" is buried
-      individual_json = json_data["ccb_api"]["response"]["individuals"]["individual"]
+      if json_data["ccb_api"].nil?
+      	individual_json = json_data
+      else
+      	individual_json = json_data["ccb_api"]["response"]["individuals"]["individual"]
+      end
       
-      #Stuffed the options into a one liner - we can expand for readability if this isn't clear
-      initialize_from_json_object(individual_json || json_data) unless individual_json.nil? && json_data.nil?
+      initialize_from_json_object(individual_json) unless individual_json.nil?
 
     end
 
