@@ -1,24 +1,13 @@
 #!/usr/bin/env ruby
 
-require 'json'
+require CCB_LIB_DIR + '/ccb_api'
 require 'yaml'
-require 'typhoeus'
-require 'active_support/core_ext'
 
-y = YAML.load(File.read("config/ccb.yml"))
-resp1 = Typhoeus::Request.get(y[:url], 
-															params: {srv: "individual_search",
-																			 first_name: "*", 
-																			 last_name: nil,
-																			 # phone: "",
-																			 # email: "",
-																			 # street_address: "",
-																			 # city: "",
-																			 # state: "",
-																			 # zip: ""
-																			 }, 
-																       username: y[:username], 
-																       password: y[:password]
-																       )
-jresp1 = JSON.parse(Hash.from_xml(resp1.body).to_json)
-puts jresp1.inspect
+# IndividualList is returned from Search
+results_1 = ChurchCommunityBuilder::Search.search_for_person_by_name("w")
+puts results_1.all_names
+
+# Individual is created here
+results_2 = ChurchCommunityBuilder::Individual.load_by_id(663)
+puts results_2.first_name
+puts results_2.last_name
