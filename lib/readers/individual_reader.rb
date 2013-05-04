@@ -1,13 +1,14 @@
 module ChurchCommunityBuilder
 
-  class PersonReader < ApiReader
+  class IndividualReader < ApiReader
 
     # Constructor.
     #
     # @param person_id The ID of the user to load.
-    def initialize(person_id)
-      # @url_data_path = "/v1/People/#{person_id}"
-      puts "We do nothing yet"
+    def initialize(individual_id)
+    	@url_data_params = {srv: "individual_profile_from_id",
+													individual_id: individual_id
+													}
     end
 
   end

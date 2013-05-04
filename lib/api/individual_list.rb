@@ -5,7 +5,7 @@ module ChurchCommunityBuilder
 		include Enumerable
 
 		attr_reader :request_data,
-								:response_data, 
+								:response_data,
 								:service,
 								:individuals,
 								:count,

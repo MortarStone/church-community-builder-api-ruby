@@ -48,8 +48,22 @@ module ChurchCommunityBuilder
 
     def initialize(json_data = nil, options = {})
       #@writer_object = PersonWriter
-      initialize_from_json_object(json_data) unless json_data.nil?
+      
+      # When we initialize from IndividualReader, the "Individual" is buried
+      individual_json = json_data["ccb_api"]["response"]["individuals"]["individual"]
+      
+      #Stuffed the options into a one liner - we can expand for readability if this isn't clear
+      initialize_from_json_object(individual_json || json_data) unless individual_json.nil? && json_data.nil?
+
     end
+
+    def self.load_by_id(individual_id)
+      reader = IndividualReader.new(individual_id)
+      self.new(reader.load_feed)
+    rescue
+      nil
+    end
+
 
   end
 
