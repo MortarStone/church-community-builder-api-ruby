@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-require CCB_LIB_DIR + '/ccb_api'
-require 'yaml'
+require File.dirname(__FILE__) + '/../lib/ccb_api.rb'
 
 # IndividualList is returned from Search
 results_1 = ChurchCommunityBuilder::Search.search_for_person_by_name("w")
