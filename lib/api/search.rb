@@ -7,10 +7,18 @@ module ChurchCommunityBuilder
       																last_name: last_name,
       																first_name: first_name
       																} 
-                 # :url_data_path => "/v1/People/Search"
                 }
       reader = ChurchCommunityBuilder::IndividualListReader.new(options)
       IndividualList.new(reader.load_feed)
+    end
+
+    def self.search_for_batch_by_date(modified_since = nil)
+      options = {:url_data_params => {srv: "batch_profiles", 
+                                      modified_since: modified_since
+                                      } 
+                }
+      reader = ChurchCommunityBuilder::BatchListReader.new(options)
+      BatchList.new(reader.load_feed)
     end
 
 	end
