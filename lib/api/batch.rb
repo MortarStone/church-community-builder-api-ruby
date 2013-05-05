@@ -23,12 +23,12 @@ module ChurchCommunityBuilder
 			initialize_from_json_object(json_data) unless json_data.nil?
 
 			if json_data["ccb_api"].nil?
-      	individual_json = json_data
+      	batch_json = json_data
       else
-      	individual_json = json_data["ccb_api"]["response"]["batches"]["batch"]
+      	batch_json = json_data["ccb_api"]["response"]["batches"]["batch"]
       end
       
-      	initialize_from_json_object(individual_json) unless individual_json.nil?
+      	initialize_from_json_object(batch_json) unless batch_json.nil?
   	end
 
 
