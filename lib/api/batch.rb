@@ -31,6 +31,14 @@ module ChurchCommunityBuilder
    #    	initialize_from_json_object(individual_json) unless individual_json.nil?
   	end
 
+
+    def self.load_by_id(batch_id)
+      reader = BatchReader.new(batch_id)
+      self.new(reader.load_feed)
+    rescue
+      nil
+    end
+
   end
 
 end
