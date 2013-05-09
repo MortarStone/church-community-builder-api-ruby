@@ -25,6 +25,9 @@ module ChurchCommunityBuilder
     #
     # @param object_attributes A Hash of values to load into the current object.
     def initialize_from_json_object(object_attributes)
+      puts "CALLER"
+      puts caller[0]
+      puts "DONE PUTTING CALLER"
       if object_attributes.is_a?( Hash )
         object_attributes.each do |key, value| 
 
