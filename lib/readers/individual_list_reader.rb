@@ -17,8 +17,6 @@ module ChurchCommunityBuilder
       # @url_data_params.merge!({:page => page}) if page
       @url_data_params.merge!({:filter => filter}) if filter
 
-      # The object to store and load the cache.
-      @cacher = cacher unless cacher.nil?
     end
 
   end
