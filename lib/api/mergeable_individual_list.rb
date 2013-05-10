@@ -5,9 +5,19 @@ module ChurchCommunityBuilder
     include Enumerable
 
     # Constructor.
-    # 
-    def initialize
-      @individual_array = []
+    # Can initialize from another IndividualList, else will default to an emtpy list
+    # which can then have other lists 'add'ed.
+    #
+    def initialize(individual_list = nil)
+      
+      if individual_list.nil?
+        @individual_array = []
+
+      else
+        @individual_array = individual_list.individual_array
+
+      end
+
     end
 
     # All the individuals in the list.
