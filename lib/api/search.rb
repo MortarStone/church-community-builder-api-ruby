@@ -48,10 +48,11 @@ module ChurchCommunityBuilder
     # Date format should be YYYY-MM-DD
     def self.search_for_batch_by_date_range(start_date, end_date = nil)
       options = {:url_data_params => {srv: "batch_profiles_in_date_range", 
-                                      start_date: start_date,
-                                      end_date: end_date
+                                      date_start: start_date,
+                                      date_end: end_date
                                       } 
                 }
+      options[:url_data_params].delete(:date_end) if end_date.nil?
       reader = BatchListReader.new(options)
       BatchList.new(reader.load_feed)
     end
