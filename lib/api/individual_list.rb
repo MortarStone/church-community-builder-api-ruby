@@ -22,14 +22,19 @@ module ChurchCommunityBuilder
 			@individuals  = @response_data['individuals']
 
 			@count = @individuals["count"].to_i #number of records
-			
+
 			# if @individuals['individual'] is a single item, it will be returned
 			# as a Hash, rather than a single element Array, containing the Hash.
-			# We initialize @individual_array = [], so we can assign to it just the
-			# same in either use case.
 			#
-			@individual_array = []
-			@individual_array << @individuals["individual"] #array of each individual
+			if @individuals["individual"].is_a?(Array)
+				@individual_array = @individuals["individual"]
+			
+			elsif @individuals["individual"].is_a?(Hash)
+				puts "I was a Hash!!!!!"
+				@individual_array = []
+				@individual_array << @individuals["individual"] #array of each individual
+			end
+
 		end
 
     def all_names
