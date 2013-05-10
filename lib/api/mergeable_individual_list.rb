@@ -72,7 +72,15 @@ module ChurchCommunityBuilder
 
     end   
 
-    alias_method :merge, :add  
+    alias_method :merge, :add
+
+    def count
+      @individual_array.size
+    end
+
+    def empty?
+      self.count == 0 ? true : false
+    end
 
   end
     
