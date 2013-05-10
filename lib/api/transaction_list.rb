@@ -30,7 +30,7 @@ module ChurchCommunityBuilder
 
 
     def empty?
-      transaction_array.size == 0 ? true : false
+      @transaction_array.size == 0 ? true : false
     end
 
 	end
