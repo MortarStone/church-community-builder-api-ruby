@@ -18,7 +18,7 @@ module ChurchCommunityBuilder
     end
 
     # Returns a list of all individuals in the Church Community Builder system.
-    def self.search_for_valid_individuals
+    def self.search_for_all_valid_individuals
       options = {:url_data_params => {srv: "valid_individuals" }
 
                 }
