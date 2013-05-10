@@ -66,8 +66,8 @@ module ChurchCommunityBuilder
         @individual_array += individual_type.individual_array
       
       elsif individual_type.is_a?(Individual)
-        @individual_array << individual_type
-      
+        @individual_array << JSON.parse( individual_type.to_json )
+
       end
 
     end   
