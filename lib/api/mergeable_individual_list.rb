@@ -46,17 +46,6 @@ module ChurchCommunityBuilder
       @individual_array.each{ |individual| yield( Individual.new(individual) )}
     end
   
-    # Alias the count method
-    alias :size :count
-
-    # Checks if the list is empty.
-    #
-    # @return True on empty, false otherwise.
-    def empty?
-      #@individual_array.empty?
-      self.count == 0 ? true : false
-    end
-
 
     # Get all the Individual ids in the list.
     #
@@ -88,9 +77,15 @@ module ChurchCommunityBuilder
       @individual_array.size
     end
 
+    # Checks if the list is empty.
+    #
+    # @return true on empty, false otherwise.
     def empty?
       self.count == 0 ? true : false
     end
+
+    # Alias the count method
+    alias :size :count
 
   end
     
