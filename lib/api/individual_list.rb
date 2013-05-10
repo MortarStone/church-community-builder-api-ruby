@@ -30,7 +30,6 @@ module ChurchCommunityBuilder
 				@individual_array = @individuals["individual"]
 			
 			elsif @individuals["individual"].is_a?(Hash)
-				puts "I was a Hash!!!!!"
 				@individual_array = []
 				@individual_array << @individuals["individual"] #array of each individual
 			end

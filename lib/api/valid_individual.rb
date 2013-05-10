@@ -23,7 +23,6 @@ module ChurchCommunityBuilder
       if json_data["ccb_api"].nil?
       	individual_json = json_data
       else
-      	puts "HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       	individual_json = json_data["ccb_api"]["response"]["individuals"]["individual"]
       end
       
