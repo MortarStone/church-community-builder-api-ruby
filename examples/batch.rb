@@ -13,9 +13,12 @@ start_date = "2013-05-03"
 end_date = nil #optional
 batch_2 = ChurchCommunityBuilder::Search.search_for_batch_by_date_range(start_date,end_date)
 
+# Create MergeableTransactionList, and load all transactions from batch_2 into it
 mtl = ChurchCommunityBuilder::MergeableTransactionList.new
 
 batch_2.each do |batch|
 	trans_list = ChurchCommunityBuilder::TransactionList.new(batch.transactions)
 	mtl.add(trans_list)
 end
+
+puts mtl.all_names

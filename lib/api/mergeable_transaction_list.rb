@@ -21,7 +21,7 @@ module ChurchCommunityBuilder
 
     def all_names
       return [] unless @transaction_array
-      @transaction_array.collect { |transaction| [transaction['first_name'], transaction['last_name']].join(' ') }
+      @transaction_array.collect { |transaction| transaction['individual'] }
     end
 
     def [](index)
