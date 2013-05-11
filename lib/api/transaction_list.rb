@@ -9,8 +9,18 @@ module ChurchCommunityBuilder
 
 
 		def initialize(json_data)
-			@transaction_array = json_data["transaction"]
 			
+      # if @json_data['transaction'] is a single item, it will be returned
+      # as a Hash, rather than a single element Array, containing the Hash.
+      #
+      if json_data["transaction"].is_a?(Array)
+        @transaction_array = json_data["transaction"]
+      
+      elsif json_data["transaction"].is_a?(Hash)
+        @transaction_array = []
+        @transaction_array << json_data["transaction"] #array of each transaction
+      end
+
 		end
 
     def all_names
