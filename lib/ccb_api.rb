@@ -12,14 +12,8 @@ require File.dirname(__FILE__) + '/auto_load.rb'
 require File.dirname(__FILE__) + '/common.rb'
 
 CCB_ENV = 'production' unless defined?(CCB_ENV)
-# CCB_ADMIN_PATH = 'https://api.onthecity.org' unless defined?(CCB_ADMIN_PATH)
-# CCB_ADMIN_API_VERSION = 'application/vnd.thecity.admin.v1+json' unless defined?(CCB_ADMIN_API_VERSION)
 
-# The path to the storage directory that will be used for caching data to disk.
-# CCB_STORAGE_DIR = File.dirname(__FILE__) + '/../storage/'
-
-
-# This class is meant to be a wrapper ChurchCommunityBuilder Admin API (OnChurchCommunityBuilder.org).
+# This class is meant to be a wrapper ChurchCommunityBuilder API
 module ChurchCommunityBuilder
 
   class AdminApi
