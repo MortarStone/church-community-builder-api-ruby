@@ -67,6 +67,14 @@ module ChurchCommunityBuilder
       nil
     end
 
+    def family_id
+    	@family['id']
+    end
+
+    def family_name
+    	@family['content']
+    end
+
 
   end
 
