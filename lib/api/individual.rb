@@ -68,13 +68,20 @@ module ChurchCommunityBuilder
     end
 
     def family_id
-    	@family['id']
+    	self.family['id']
     end
 
     def family_name
-    	@family['content']
+    	self.family['content']
     end
 
+    def campus_id
+      self.campus["id"]
+    end
+
+    def campus_name
+      self.campus["content"]
+    end
 
   end
 

@@ -32,21 +32,38 @@ module ChurchCommunityBuilder
   	end
 
     def campus_id
-      @campus["id"]
+      self.campus["id"]
     end
 
     def campus_name
-      @campus["content"]
+      self.campus["content"]
     end
 
     def individual_id
-      @individual["id"]
+      self.individual["id"]
     end
 
     def individual_name
-      @individual["content"]
+      self.individual["content"]
     end
 
+    def multiple_transactions?
+      self.transaction_details["transaction_detail"].is_a?(Array)
+    end
+
+    def transaction_amount
+
+      if multiple_transactions?
+        trans_ary = []
+        self.transaction_details["transaction_detail"].each {|trans| ary << trans}
+        return trans_ary
+      
+      else
+        self.transaction_details["transaction_detail"]["amount"]
+      
+      end
+
+    end
 
     # def self.load_by_id(transaction_id)
     #   reader = TransactionReader.new(transaction_id)
