@@ -22,3 +22,24 @@ batch_2.each do |batch|
 end
 
 puts mtl.all_names
+
+# Create MergeableIndividualList, and lookup all Individuals from mtl.
+individual_list = ChurchCommunityBuilder::MergeableIndividualList.new
+
+mtl.each do |transaction|
+	individual = ChurchCommunityBuilder::Individual.load_by_id(transaction.individual_id)
+	individual_list.add(individual)
+end
+
+# Batch reporting
+individual_list = ChurchCommunityBuilder::MergeableIndividualList.new
+
+mtl.each do |transaction|
+	individual = ChurchCommunityBuilder::Individual.load_by_id(transaction.individual_id)
+
+	puts transaction.date + "\t" +
+			 individual.family_name + "\t" +
+	     individual.full_name + "\t" +
+			 transaction.transaction_amount unless transaction.multiple_transactions?
+	puts "********************************************************************"
+end

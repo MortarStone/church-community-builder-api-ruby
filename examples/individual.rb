@@ -3,13 +3,18 @@
 require File.dirname(__FILE__) + '/../lib/ccb_api.rb'
 
 # IndividualList is returned from Search
-results_1 = ChurchCommunityBuilder::Search.search_for_person_by_name("w")
-puts results_1.all_names
+x_names = ChurchCommunityBuilder::Search.search_for_person_by_name("x")
+puts x_names.all_names
 
 # Individual is created here
-results_2 = ChurchCommunityBuilder::Individual.load_by_id(663)
-puts results_2.first_name
-puts results_2.last_name
+individual = ChurchCommunityBuilder::Individual.load_by_id(2)
+puts "Name ==> " + individual.full_name
+puts "Gender ==> " + individual.gender
+puts "Birthday ==> " + individual.birthday
+puts "Email ==> " + individual.email
+puts "Marital Status ==> " + individual.marital_status
+puts "Family Name ==> " + individual.family_name
+puts "Campus Name ==> " + individual.campus_name
 
 # Grab all individuals
 all_valid_individuals = ChurchCommunityBuilder::Search.search_for_all_valid_individuals
