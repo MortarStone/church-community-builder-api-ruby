@@ -55,7 +55,7 @@ module ChurchCommunityBuilder
 
       if multiple_transactions?
         trans_ary = []
-        self.transaction_details["transaction_detail"].each {|trans| ary << trans}
+        self.transaction_details["transaction_detail"].each {|trans| ary << trans["amount"]}
         return trans_ary
       
       else
