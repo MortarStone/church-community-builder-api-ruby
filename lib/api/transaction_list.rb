@@ -25,7 +25,7 @@ module ChurchCommunityBuilder
 
     def all_names
       return [] unless @transaction_array
-      @transaction_array.collect { |transaction| transaction['individual'] }
+      @transaction_array.collect { |transaction| transaction['individual']['content'] }
     end
 
     def [](index)
@@ -46,7 +46,3 @@ module ChurchCommunityBuilder
 	end
 
 end
-
-# require './lib/ccb_api'
-# batch = ChurchCommunityBuilder::Search.search_for_batch_by_id(469)
-# trans_list = ChurchCommunityBuilder::TransactionList.new(batch.transactions)

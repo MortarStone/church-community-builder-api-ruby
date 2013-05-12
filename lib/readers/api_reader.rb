@@ -15,7 +15,7 @@ module ChurchCommunityBuilder
    
         @url_data_params ||= {}
         response = ChurchCommunityBuilder::admin_request(:get, @url_data_params)
-        data = JSON.parse( _xml2json(response.body) )
+        data = _xml2json(response.body)
         @headers = response.headers
   
         return data
@@ -24,7 +24,10 @@ module ChurchCommunityBuilder
     private
 
     def _xml2json(xml)
-      Hash.from_xml(xml).to_json
+      # {KeepRoot: true, ForceArray: false, SuppressEmpty: true} were set to 
+      # maximize compatibility with Hash.from_xml, used previously.
+      #
+      XmlSimple.xml_in(xml, {KeepRoot: true, ForceArray: false, SuppressEmpty: true})
     end
 
   end

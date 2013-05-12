@@ -31,6 +31,22 @@ module ChurchCommunityBuilder
       	initialize_from_json_object(transaction_json) unless transaction_json.nil?
   	end
 
+    def campus_id
+      @campus["id"]
+    end
+
+    def campus_name
+      @campus["content"]
+    end
+
+    def individual_id
+      @individual["id"]
+    end
+
+    def individual_name
+      @individual["content"]
+    end
+
 
     # def self.load_by_id(transaction_id)
     #   reader = TransactionReader.new(transaction_id)

@@ -1,6 +1,7 @@
 require 'yaml'
 require 'typhoeus'
 require 'json'
+require 'xmlsimple'
 require 'active_support/core_ext'
 
 # The path to the lib directory.
