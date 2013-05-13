@@ -55,12 +55,39 @@ module ChurchCommunityBuilder
 
       if multiple_transactions?
         trans_ary = []
-        self.transaction_details["transaction_detail"].each {|trans| ary << trans["amount"]}
+        self.transaction_details["transaction_detail"].each {|trans| trans_ary << trans["amount"]}
         return trans_ary
       
       else
         self.transaction_details["transaction_detail"]["amount"]
       
+      end
+
+    end
+
+    def transaction_fund_name
+
+      if multiple_transactions?
+        trans_ary = []
+        self.transaction_details["transaction_detail"].each {|trans| trans_ary << trans["coa"]["content"]}
+        return trans_ary
+      
+      else
+        self.transaction_details["transaction_detail"]["coa"]["content"]
+
+      end
+
+    end
+
+    def transaction_fund_id
+      if multiple_transactions?
+        trans_ary = []
+        self.transaction_details["transaction_detail"].each {|trans| trans_ary << trans["coa"]["id"]}
+        return trans_ary
+      
+      else
+        self.transaction_details["transaction_detail"]["coa"]["id"]
+
       end
 
     end
