@@ -112,25 +112,27 @@ module ChurchCommunityBuilder
 
     	end
 
-    	def _set_phones
+    end
 
-    		self.phones["phone"].each do |phone|
-    			case phone["type"]
-    			when 'contact'
-    				@contact_phone = phone["content"]
-  				when 'home'
-    				@home_phone = phone["content"]
-  				when 'work'
-    				@work_phone = phone["content"]
-  				when 'mobile'
-    				@mobile_phone = phone["content"]
-    			end
+  	def _set_phones
 
-    		end
+  		self.phones["phone"].each do |phone|
+  			case phone["type"]
+  			when 'contact'
+  				@contact_phone = phone["content"]
+				when 'home'
+  				@home_phone = phone["content"]
+				when 'work'
+  				@work_phone = phone["content"]
+				when 'mobile'
+  				@mobile_phone = phone["content"]
+  			end
 
-  	end
+    	end
+
+    end
 
 	end
 
-
 end
+
