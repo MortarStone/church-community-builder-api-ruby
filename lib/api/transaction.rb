@@ -51,7 +51,7 @@ module ChurchCommunityBuilder
       self.transaction_details["transaction_detail"].is_a?(Array)
     end
 
-    def transaction_amount
+    def amount
 
       if multiple_transactions?
         trans_ary = []
@@ -65,7 +65,7 @@ module ChurchCommunityBuilder
 
     end
 
-    def transaction_fund_name
+    def fund_name
 
       if multiple_transactions?
         trans_ary = []
@@ -79,7 +79,7 @@ module ChurchCommunityBuilder
 
     end
 
-    def transaction_fund_id
+    def fund_id
       if multiple_transactions?
         trans_ary = []
         self.transaction_details["transaction_detail"].each {|trans| trans_ary << trans["coa"]["id"]}

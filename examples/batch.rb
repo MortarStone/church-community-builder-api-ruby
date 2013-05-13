@@ -41,9 +41,9 @@ mtl.each do |transaction|
 	puts transaction.date + "\t" +
 			 individual.family_name + "\t" +
 	     individual.full_name + "\t" +
-			 "$" + transaction.transaction_amount.to_s #unless transaction.multiple_transactions?
-	puts transaction.transaction_fund_id.to_s + "\t" +
-			 transaction.transaction_fund_name.to_s + "\t" +
+			 "$" + transaction.amount.to_s #unless transaction.multiple_transactions?
+	puts transaction.fund_id.to_s + "\t" +
+			 transaction.fund_name.to_s + "\t" +
 			 transaction.payment_type + "\t" +
 			 transaction.check_number.to_s #check_number will be nil if not paid by check
 	puts "********************************************************************"
