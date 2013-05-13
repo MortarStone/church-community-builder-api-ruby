@@ -41,6 +41,10 @@ module ChurchCommunityBuilder
       @individual_array.collect { |individual| [individual['first_name'], individual['last_name']].join(' ') }
     end
 
+    def ids
+      (@individual_array.collect { |individual| individual['id'] }).uniq
+    end
+
     def [](index)
       Individual.new( @individual_array[index] ) if @individual_array and @individual_array[index]
     end

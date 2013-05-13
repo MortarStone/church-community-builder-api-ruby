@@ -28,6 +28,10 @@ module ChurchCommunityBuilder
       @transaction_array.collect { |transaction| transaction['individual']['content'] }
     end
 
+    def ids
+      (@transaction_array.collect { |transaction| transaction['id'] }).uniq
+    end
+
     def [](index)
       Transaction.new( @transaction_array[index] ) if @transaction_array and @transaction_array[index]
     end
