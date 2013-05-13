@@ -43,10 +43,18 @@ module ChurchCommunityBuilder
 											:creator,
 											:modifier,
 											:created,
-											:modified
+											:modified,
+											:home_address,
+											:mailing_address,
+											:work_address,
+											:other_address,
+											:contact_phone,
+											:home_phone,
+											:work_phone,
+											:mobile_phone
 
 
-    def initialize(json_data = nil, options = {})
+    def initialize(json_data = nil)
       #@writer_object = PersonWriter
       
       # When we initialize from IndividualReader, the "Individual" is buried
@@ -58,6 +66,9 @@ module ChurchCommunityBuilder
       
       initialize_from_json_object(individual_json) unless individual_json.nil?
 
+      _set_addresses
+      _set_phones
+
     end
 
     def self.load_by_id(individual_id)
@@ -67,18 +78,61 @@ module ChurchCommunityBuilder
       nil
     end
 
+    def family_id
+    	self.family['id']
+    end
 
-  end
+    def family_name
+    	self.family['content']
+    end
+
+    def campus_id
+      self.campus["id"]
+    end
+
+    def campus_name
+      self.campus["content"]
+    end
+
+	  private
+
+	  def _set_addresses
+
+			self.addresses["address"].each do |address|
+				case address["type"]
+    		when 'mailing'
+    			@mailing_address = Address.new(address)
+    		when 'home'
+    			@home_address = Address.new(address)
+    		when 'work'
+    			@work_address = Address.new(address)
+    		when 'other'
+    			@other_address = Address.new(address)
+    		end
+
+    	end
+
+    end
+
+  	def _set_phones
+
+  		self.phones["phone"].each do |phone|
+  			case phone["type"]
+  			when 'contact'
+  				@contact_phone = phone["content"]
+				when 'home'
+  				@home_phone = phone["content"]
+				when 'work'
+  				@work_phone = phone["content"]
+				when 'mobile'
+  				@mobile_phone = phone["content"]
+  			end
+
+    	end
+
+    end
+
+	end
 
 end
 
-#  Searchable by:
-# (e.g., individual_search service)
-										#   :first_name,
-  									# 	:last_name,
-  									# 	:phone,
-  									# 	:email,
-  									# 	:street_address,
-  									# 	:city,
-  									# 	:state,
-  									# 	:zip,

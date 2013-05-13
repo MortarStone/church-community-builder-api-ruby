@@ -25,19 +25,19 @@ module ChurchCommunityBuilder
     #
     # @param object_attributes A Hash of values to load into the current object.
     def initialize_from_json_object(object_attributes)
-      puts "CALLER"
-      puts caller[0]
-      puts "DONE PUTTING CALLER"
+      # puts "CALLER"
+      # puts caller[0]
+      # puts "DONE PUTTING CALLER"
       if object_attributes.is_a?( Hash )
         object_attributes.each do |key, value| 
 
           method_to_call = "#{key.to_s.downcase.gsub(' ', '_')}="
           
           if respond_to?(method_to_call)
-            puts "Sending :=> ".green + method_to_call.to_s + value.to_s
+            # puts "Sending :=> ".green + method_to_call.to_s + value.to_s
             self.send(method_to_call, value) 
           else
-            puts "Missing :=> ".red + method_to_call.to_s  # Show the missing methods
+            # puts "Missing :=> ".red + method_to_call.to_s  # Show the missing methods
           end
         end
       end     

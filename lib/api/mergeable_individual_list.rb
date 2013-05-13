@@ -51,7 +51,7 @@ module ChurchCommunityBuilder
     #
     # @return An array of Individual ids.
     def ids
-      (@individual_array.collect { |individual| individual['@id'] }).uniq
+      (@individual_array.collect { |individual| individual['id'] }).uniq
     end
 
     # Adds an IndividualList, MergeableIndividualList, or Individual to this list.

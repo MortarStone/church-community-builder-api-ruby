@@ -21,7 +21,7 @@ module ChurchCommunityBuilder
 
     def all_names
       return [] unless @transaction_array
-      @transaction_array.collect { |transaction| [transaction['first_name'], transaction['last_name']].join(' ') }
+      @transaction_array.collect { |transaction| transaction['individual']['content'] }
     end
 
     def [](index)
@@ -38,7 +38,7 @@ module ChurchCommunityBuilder
     #
     # @return An array of Transaction ids.
     def ids
-      (@transaction_array.collect { |transaction| transaction['@id'] }).uniq
+      (@transaction_array.collect { |transaction| transaction['id'] }).uniq
     end
 
     # Adds an TransactionList, MergeableTransactionList, or Transaction to this list.

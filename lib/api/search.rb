@@ -66,6 +66,16 @@ module ChurchCommunityBuilder
       Batch.new(reader.load_feed)
     end
 
+    # This is currently undocumented, but found via spelunking
+    #
+    def self.search_for_all_campuses
+      options = {:url_data_params => {srv: "campus_list" }
+
+                }
+      reader = CampusListReader.new(options)
+      CampusList.new(reader.load_feed)
+    end
+
 	end
 
 end
