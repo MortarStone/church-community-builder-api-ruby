@@ -6,12 +6,6 @@ module ChurchCommunityBuilder
   require api_path + 'api_object.rb'
   Dir["#{api_path}/*.rb"].each { |f| require(f) }
 
-  cache_path = CCB_LIB_DIR + '/cachers/'
-  require cache_path + 'cache_adapter.rb'
-
-  cache_file_path = CCB_LIB_DIR + '/cachers/file/'
-  Dir["#{cache_file_path}/*.rb"].each { |f| require(f) }
-
   readers_path = CCB_LIB_DIR + '/readers/'
   require readers_path + 'api_reader.rb'
   Dir["#{readers_path}/*.rb"].each { |f| require(f) }
