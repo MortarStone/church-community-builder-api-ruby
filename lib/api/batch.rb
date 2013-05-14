@@ -19,6 +19,14 @@ module ChurchCommunityBuilder
 											:modified
 									
 
+    def self.load_by_id(batch_id)
+      reader = BatchReader.new(batch_id)
+      self.new(reader.load_feed)
+    rescue
+      nil
+    end
+
+
   	def initialize(json_data = nil, options = {})
 			initialize_from_json_object(json_data) unless json_data.nil?
 
@@ -32,13 +40,9 @@ module ChurchCommunityBuilder
   	end
 
 
-    def self.load_by_id(batch_id)
-      reader = BatchReader.new(batch_id)
-      self.new(reader.load_feed)
-    rescue
-      nil
+    def has_transactions?
+      !self.transactions.nil?
     end
-
   end
 
 end

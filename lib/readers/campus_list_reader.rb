@@ -1,6 +1,6 @@
 module ChurchCommunityBuilder
 
-  class BatchListReader < ApiReader
+  class CampusListReader < ApiReader
 
     # Constructor.
     #

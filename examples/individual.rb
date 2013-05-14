@@ -1,15 +1,29 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + '/../lib/ccb_api.rb'
+require File.dirname(__FILE__) + '/../lib/ccb_api'
 
 # IndividualList is returned from Search
-results_1 = ChurchCommunityBuilder::Search.search_for_person_by_name("w")
-puts results_1.all_names
+x_names = ChurchCommunityBuilder::Search.search_for_person_by_name("x")
+puts x_names.all_names
 
 # Individual is created here
-results_2 = ChurchCommunityBuilder::Individual.load_by_id(663)
-puts results_2.first_name
-puts results_2.last_name
+individual = ChurchCommunityBuilder::Individual.load_by_id(2)
+puts "Name ==> " + individual.full_name
+puts "Address: "
+puts individual.mailing_address.street_address + "\n" +
+		 individual.mailing_address.city + ", " + 
+		 individual.mailing_address.state + " " +
+		 individual.mailing_address.zip
+
+puts "Phone ==>" + individual.contact_phone
+puts "Email ==> " + individual.email
+
+puts "Gender ==> " + individual.gender
+puts "Birthday ==> " + individual.birthday
+puts "Marital Status ==> " + individual.marital_status
+
+puts "Family Name ==> " + individual.family_name
+puts "Campus Name ==> " + individual.campus_name
 
 # Grab all individuals
 all_valid_individuals = ChurchCommunityBuilder::Search.search_for_all_valid_individuals

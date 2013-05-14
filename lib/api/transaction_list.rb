@@ -9,13 +9,27 @@ module ChurchCommunityBuilder
 
 
 		def initialize(json_data)
-			@transaction_array = json_data["transaction"]
 			
+      # if @json_data['transaction'] is a single item, it will be returned
+      # as a Hash, rather than a single element Array, containing the Hash.
+      #
+      if json_data["transaction"].is_a?(Array)
+        @transaction_array = json_data["transaction"]
+      
+      elsif json_data["transaction"].is_a?(Hash)
+        @transaction_array = []
+        @transaction_array << json_data["transaction"] #array of each transaction
+      end
+
 		end
 
     def all_names
       return [] unless @transaction_array
-      @transaction_array.collect { |transaction| [transaction['first_name'], transaction['last_name']].join(' ') }
+      @transaction_array.collect { |transaction| transaction['individual']['content'] }
+    end
+
+    def ids
+      (@transaction_array.collect { |transaction| transaction['id'] }).uniq
     end
 
     def [](index)
@@ -36,7 +50,3 @@ module ChurchCommunityBuilder
 	end
 
 end
-
-# require './lib/ccb_api'
-# batch = ChurchCommunityBuilder::Search.search_for_batch_by_id(469)
-# trans_list = ChurchCommunityBuilder::TransactionList.new(batch.transactions)
