@@ -1,4 +1,4 @@
-gem 'typhoeus','= 0.4.2'
+gem 'typhoeus','= 0.5.1'
 require 'typhoeus'
 require 'yaml'
 require 'json'
