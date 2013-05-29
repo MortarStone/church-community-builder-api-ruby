@@ -2,14 +2,10 @@ module ChurchCommunityBuilder
   require 'cgi'
   require 'json'
 
-  config_file = CCB_LIB_DIR + "/../config/ccb.yml"
-  $config = YAML.load(File.read(config_file))
-
   def self.admin_request(method, params = {}, body = nil)
-
-    url = $config[:url]
-    username = $config[:username]
-    password = $config[:password]
+    url = "https://#{ChurchCommunityBuilder::Api.api_subdomain}.ccbchurch.com/api.php"
+    username = ChurchCommunityBuilder::Api.api_username
+    password = ChurchCommunityBuilder::Api.api_password
 
     response =
     case method

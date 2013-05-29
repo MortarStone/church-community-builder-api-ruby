@@ -17,15 +17,17 @@ CCB_ENV = 'production' unless defined?(CCB_ENV)
 # This class is meant to be a wrapper ChurchCommunityBuilder API
 module ChurchCommunityBuilder
 
-  class AdminApi
+  class Api
     class << self
-      attr_reader :api_key, :api_token
+      attr_reader :api_username, :api_password, :api_subdomain
     end
     
-    def self.connect(admin_api_key, admin_api_token)
-      raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new('Key and Token cannot be nil.') if admin_api_key.nil? or admin_api_token.nil?
-      @api_key = admin_api_key
-      @api_token = admin_api_token
+    def self.connect(username, password, subdomain)
+      raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new('Username, password, and subdomain cannot be nil.') if username.nil? or password.nil? or subdomain.nil?
+      @api_username = username
+      @api_password = password
+      @api_subdomain = subdomain
+      true
     end
 
   end

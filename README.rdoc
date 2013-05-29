@@ -17,13 +17,14 @@ To add it to your Gemfile
 
 Add your church's API Token and API Key to [RAILS_ROOT]/config/initializers/ccb_config.rb
 
-    CCB_KEY = '**** YOUR CCB API KEY ****'
-    CCB_TOKEN = '**** YOUR CCB API TOKEN ****'
+    CCB_USERNAME = '**** YOUR CCB API USERNAME ****'
+    CCB_PASSWORD = '**** YOUR CCB API PASSWORD ****'
+    CCB_SUBDOMAIN = '**** YOUR CCB API SUBDOMAIN ****'
 
 
 Next you will need to initialize a connection
 
-    ChurchCommunityBuilder::Api.connect(CCB_KEY, CCB_TOKEN)
+    ChurchCommunityBuilder::Api.connect(CCB_USERNAME, CCB_PASSWORD, CCB_SUBDOMAIN)
 
 
 
