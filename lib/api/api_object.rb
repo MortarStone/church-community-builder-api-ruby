@@ -1,7 +1,5 @@
 module ChurchCommunityBuilder
 
-  require 'colored' #temporary, for pretty debugging
-
   # This class is the base class for all ChurchCommunityBuilder objects and is meant to be inherited.
   #
   class ApiObject

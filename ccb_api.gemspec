@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.description = 'Ruby gem/plugin to interact with the Church Community Builder API. Checkout the project on github for more detail.'
 
   s.add_dependency('typhoeus', '0.5.1')
+  s.add_dependency('xml-simple')
 
 
   s.files         = `git ls-files`.split("\n")

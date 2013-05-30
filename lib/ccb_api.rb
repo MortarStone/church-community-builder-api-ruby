@@ -1,6 +1,4 @@
-gem 'typhoeus','= 0.5.1'
 require 'typhoeus'
-require 'yaml'
 require 'json'
 require 'xmlsimple'
 require 'active_support/core_ext'
