@@ -22,7 +22,7 @@ module ChurchCommunityBuilder
 			@batches  = @response_data['batches']
 
 			@count = @batches["count"].to_i #number of records
-			@batch_array = @batches["batch"].class == Array ? @batches["batch"] : [@batches["batch"]] #array of each batch
+			@batch_array = @batches["batch"].class == Array ? @batches["batch"] : [@batches["batch"]].compact #array of each batch
 		end
 
     def all_names
