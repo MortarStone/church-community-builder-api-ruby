@@ -81,7 +81,7 @@ module ChurchCommunityBuilder
       if multiple_transactions?
         self.transaction_details["transaction_detail"].each_with_index do |trans, indx| 
           vals << [{:fund_id => trans["coa"]["id"],
-                    :fund_name => trans["coa"]["id"],
+                    :fund_name => trans["coa"]["content"],
                     :amount => self.transaction_details["transaction_detail"][indx]["amount"]}]
         end
       else 
