@@ -51,6 +51,14 @@ module ChurchCommunityBuilder
       self.transaction_details["transaction_detail"].is_a?(Array)
     end
 
+    def transaction_detail_id
+      if multiple_transactions?
+        self.transaction_details["transaction_detail"].each{ |trans| trans["id"] }
+      else
+        self.transaction_details["transaction_detail"]["id"]
+      end
+    end
+
     def fund_id
       if multiple_transactions?
         self.transaction_details["transaction_detail"].each{ |trans| trans["coa"]["id"] }
@@ -80,12 +88,14 @@ module ChurchCommunityBuilder
       vals = []
       if multiple_transactions?
         self.transaction_details["transaction_detail"].each_with_index do |trans, indx| 
-          vals << {:fund_id => trans["coa"]["id"],
+          vals << {:transaction_detail_id => trans['id'],
+                   :fund_id => trans["coa"]["id"],
                    :fund_name => trans["coa"]["content"],
                    :amount => self.transaction_details["transaction_detail"][indx]["amount"]}
         end
       else 
-        vals << {:fund_id => self.transaction_details["transaction_detail"]["coa"]["id"],
+        vals << {:transaction_detail_id => self.transaction_details["transaction_detail"]["id"],
+                 :fund_id => self.transaction_details["transaction_detail"]["coa"]["id"],
                  :fund_name => self.transaction_details["transaction_detail"]["coa"]["content"],
                  :amount => self.transaction_details["transaction_detail"]["amount"]}
       end
