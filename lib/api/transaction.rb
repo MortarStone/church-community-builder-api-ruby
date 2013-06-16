@@ -28,7 +28,7 @@ module ChurchCommunityBuilder
         transaction_json = json_data["transaction"]
       end
       
-        initialize_from_json_object(transaction_json) unless transaction_json.nil?
+      initialize_from_json_object(transaction_json) unless transaction_json.nil?
     end
 
     def campus_id
