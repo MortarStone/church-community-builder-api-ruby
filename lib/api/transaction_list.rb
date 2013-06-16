@@ -1,15 +1,15 @@
 module ChurchCommunityBuilder
 
-	class TransactionList
+  class TransactionList
 
-		include Enumerable
+    include Enumerable
 
-		attr_reader :transaction_array #for debugging
-								
+    attr_reader :transaction_array #for debugging
+                
 
 
-		def initialize(json_data)
-			
+    def initialize(json_data)
+      
       # if @json_data['transaction'] is a single item, it will be returned
       # as a Hash, rather than a single element Array, containing the Hash.
       #
@@ -21,7 +21,7 @@ module ChurchCommunityBuilder
         @transaction_array << json_data["transaction"] #array of each transaction
       end
 
-		end
+    end
 
     def all_names
       return [] unless @transaction_array
@@ -47,6 +47,6 @@ module ChurchCommunityBuilder
       @transaction_array.size == 0 ? true : false
     end
 
-	end
+  end
 
 end

@@ -1,29 +1,29 @@
 module ChurchCommunityBuilder
 
-	class BatchList
+  class BatchList
 
-		include Enumerable
+    include Enumerable
 
-		attr_reader :request_data,
-								:response_data,
-								:service,
-								:batches,
-								:count,
-								:batch_array,
-								:json_data #for debugging
+    attr_reader :request_data,
+                :response_data,
+                :service,
+                :batches,
+                :count,
+                :batch_array,
+                :json_data #for debugging
 
 
-		def initialize(json)
-			@json_data = json["ccb_api"]
-			@request_data = @json_data["request"]
-			@response_data = @json_data["response"]
-			@service = @response_data["service"] #CCB service type accessed
+    def initialize(json)
+      @json_data = json["ccb_api"]
+      @request_data = @json_data["request"]
+      @response_data = @json_data["response"]
+      @service = @response_data["service"] #CCB service type accessed
 
-			@batches  = @response_data['batches']
+      @batches  = @response_data['batches']
 
-			@count = @batches["count"].to_i #number of records
-			@batch_array = @batches["batch"].class == Array ? @batches["batch"] : [@batches["batch"]].compact #array of each batch
-		end
+      @count = @batches["count"].to_i #number of records
+      @batch_array = @batches["batch"].class == Array ? @batches["batch"] : [@batches["batch"]].compact #array of each batch
+    end
 
     def all_names
       return [] unless @batch_array
@@ -45,6 +45,6 @@ module ChurchCommunityBuilder
       self.count == 0 ? true : false
     end
 
-	end
+  end
 
 end

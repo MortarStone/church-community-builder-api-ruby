@@ -1,40 +1,40 @@
 module ChurchCommunityBuilder
 
-	class IndividualList
+  class IndividualList
 
-		include Enumerable
+    include Enumerable
 
-		attr_reader :request_data,
-								:response_data,
-								:service,
-								:individuals,
-								:count,
-								:individual_array,
-								:json_data #for debugging
+    attr_reader :request_data,
+                :response_data,
+                :service,
+                :individuals,
+                :count,
+                :individual_array,
+                :json_data #for debugging
 
 
-		def initialize(json)
-			@json_data = json["ccb_api"]
-			@request_data = @json_data["request"]
-			@response_data = @json_data["response"]
-			@service = @response_data["service"] #CCB service type accessed
+    def initialize(json)
+      @json_data = json["ccb_api"]
+      @request_data = @json_data["request"]
+      @response_data = @json_data["response"]
+      @service = @response_data["service"] #CCB service type accessed
 
-			@individuals  = @response_data['individuals']
+      @individuals  = @response_data['individuals']
 
-			@count = @individuals["count"].to_i #number of records
+      @count = @individuals["count"].to_i #number of records
 
-			# if @individuals['individual'] is a single item, it will be returned
-			# as a Hash, rather than a single element Array, containing the Hash.
-			#
-			if @individuals["individual"].is_a?(Array)
-				@individual_array = @individuals["individual"]
-			
-			elsif @individuals["individual"].is_a?(Hash)
-				@individual_array = []
-				@individual_array << @individuals["individual"] #array of each individual
-			end
+      # if @individuals['individual'] is a single item, it will be returned
+      # as a Hash, rather than a single element Array, containing the Hash.
+      #
+      if @individuals["individual"].is_a?(Array)
+        @individual_array = @individuals["individual"]
+      
+      elsif @individuals["individual"].is_a?(Hash)
+        @individual_array = []
+        @individual_array << @individuals["individual"] #array of each individual
+      end
 
-		end
+    end
 
     def all_names
       return [] unless @individual_array
@@ -60,6 +60,6 @@ module ChurchCommunityBuilder
       self.count == 0 ? true : false
     end
 
-	end
+  end
 
 end

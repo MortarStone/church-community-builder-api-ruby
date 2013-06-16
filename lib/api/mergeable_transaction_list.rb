@@ -1,23 +1,23 @@
 module ChurchCommunityBuilder
 
-	class MergeableTransactionList
+  class MergeableTransactionList
 
-		include Enumerable
+    include Enumerable
 
-		attr_reader :transaction_array #for debugging
-								
+    attr_reader :transaction_array #for debugging
+                
 
-		def initialize(transaction_list = nil)
+    def initialize(transaction_list = nil)
 
-			if transaction_list.nil?
-				@transaction_array = []
+      if transaction_list.nil?
+        @transaction_array = []
 
-			else
-				@transaction_array = transaction_list.transaction_array
+      else
+        @transaction_array = transaction_list.transaction_array
 
-			end
-			
-		end
+      end
+      
+    end
 
     def all_names
       return [] unless @transaction_array
@@ -69,6 +69,6 @@ module ChurchCommunityBuilder
       self.count == 0 ? true : false
     end
 
-	end
+  end
 
 end

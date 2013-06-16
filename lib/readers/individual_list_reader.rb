@@ -1,6 +1,5 @@
 module ChurchCommunityBuilder
 
-
   # This reader works with both Individual List and ValidIndividualList
   #
   class IndividualListReader < ApiReader

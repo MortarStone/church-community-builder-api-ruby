@@ -1,27 +1,27 @@
 module ChurchCommunityBuilder
 
-	class CampusList
+  class CampusList
 
-		include Enumerable
+    include Enumerable
 
-		attr_reader :request_data,
-								:response_data,
-								:service,
-								:individuals,
-								:count,
-								:campus_array,
-								:json_data #for debugging
-								
+    attr_reader :request_data,
+                :response_data,
+                :service,
+                :individuals,
+                :count,
+                :campus_array,
+                :json_data #for debugging
+                
 
-		def initialize(json)
-			@json_data = json["ccb_api"]
-			@request_data = @json_data["request"]
-			@response_data = @json_data["response"]
-			@service = @response_data["service"] #CCB service type accessed
+    def initialize(json)
+      @json_data = json["ccb_api"]
+      @request_data = @json_data["request"]
+      @response_data = @json_data["response"]
+      @service = @response_data["service"] #CCB service type accessed
 
-			@campuses  = @response_data['campuses']
+      @campuses  = @response_data['campuses']
 
-			@count = @campuses["count"].to_i #number of records
+      @count = @campuses["count"].to_i #number of records
 
       # if @campuses['campus'] is a single item, it will be returned
       # as a Hash, rather than a single element Array, containing the Hash.
@@ -34,7 +34,7 @@ module ChurchCommunityBuilder
         @campus_array << @campuses["campus"] #array of each campus
       end
 
-		end
+    end
 
     def all_names
       return [] unless @campus_array
@@ -60,6 +60,6 @@ module ChurchCommunityBuilder
       @campus_array.size == 0 ? true : false
     end
 
-	end
+  end
 
 end
