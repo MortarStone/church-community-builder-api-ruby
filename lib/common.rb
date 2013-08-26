@@ -19,6 +19,10 @@ module ChurchCommunityBuilder
       Typhoeus::Request.delete(url, {:headers => headers, :params => params})
     end    
 
+# Need to account for this
+# {"ccb_api"=>{"request"=>{"parameters"=>{"argument"=>[{"name"=>"srv", "value"=>"batch_profiles_in_date_range"}, 
+#   {"name"=>"date_start", "value"=>"2013-03-11"}, {"name"=>"date_end", "value"=>"2013-04-10"}]}}, 
+#   "response"=>{"error"=>{"number"=>"005", "type"=>"Service Permission", "content"=>"Query limit of '10000' reached, please try again tomorrow."}}}}
 
     unless response.success?
       if response.code > 0
