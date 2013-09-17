@@ -2,6 +2,7 @@
 
 require 'debugger'
 require File.dirname(__FILE__) + '/../lib/ccb_api'
+require File.dirname(__FILE__) + '/api_connect.rb'
 
 
 start_date = "2013-04-01"

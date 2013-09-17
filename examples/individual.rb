@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require File.dirname(__FILE__) + '/../lib/ccb_api'
+require File.dirname(__FILE__) + '/api_connect.rb'
 
 # IndividualList is returned from Search
 x_names = ChurchCommunityBuilder::Search.search_for_person_by_name("x")

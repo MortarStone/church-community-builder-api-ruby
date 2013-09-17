@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require File.dirname(__FILE__) + '/../lib/ccb_api'
+require File.dirname(__FILE__) + '/api_connect.rb'
 require 'pp'
 
 campus_list = ChurchCommunityBuilder::Search.search_for_all_campuses

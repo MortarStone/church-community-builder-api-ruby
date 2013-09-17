@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require File.dirname(__FILE__) + '/../lib/ccb_api.rb'
+require File.dirname(__FILE__) + '/api_connect.rb'
 
 # Load batch by id
 batch_1 = ChurchCommunityBuilder::Search.search_for_batch_by_id(469)
