@@ -6,7 +6,7 @@ gem 'xml-simple'
 
 group :development, :test do
   gem 'colored'
-  gem 'autotest'
+  #gem 'autotest'
   gem 'rspec'
   gem 'debugger'
   gem 'factory_girl'
