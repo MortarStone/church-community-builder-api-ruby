@@ -48,10 +48,12 @@ module ChurchCommunityBuilder
     end
 
     def multiple_transactions?
+      return false if self.transaction_details.nil?
       self.transaction_details["transaction_detail"].is_a?(Array)
     end
 
     def transaction_detail_id
+      return nil if self.transaction_details.nil?
       if multiple_transactions?
         self.transaction_details["transaction_detail"].each{ |trans| trans["id"] }
       else
@@ -60,6 +62,7 @@ module ChurchCommunityBuilder
     end
 
     def fund_id
+      return nil if self.transaction_details.nil?
       if multiple_transactions?
         self.transaction_details["transaction_detail"].each{ |trans| trans["coa"]["id"] }
       else
@@ -68,6 +71,7 @@ module ChurchCommunityBuilder
     end    
 
     def fund_name
+      return nil if self.transaction_details.nil?
       if multiple_transactions?
         self.transaction_details["transaction_detail"].collect{ |trans| trans["coa"]["content"] }
       else
@@ -76,6 +80,7 @@ module ChurchCommunityBuilder
     end
 
     def amount
+      return nil if self.transaction_details.nil?
       if multiple_transactions?
         self.transaction_details["transaction_detail"].collect{ |trans| trans["amount"] }     
       else
@@ -85,6 +90,7 @@ module ChurchCommunityBuilder
 
 
     def as_splits
+      return nil if self.transaction_details.nil?
       vals = []
       if multiple_transactions?
         self.transaction_details["transaction_detail"].each_with_index do |trans, indx| 
