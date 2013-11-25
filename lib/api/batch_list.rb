@@ -6,20 +6,21 @@ module ChurchCommunityBuilder
 
     attr_reader :request_data,
                 :response_data,
-                :service,
+                :service_action,
+                :availability,
                 :batches,
                 :count,
                 :batch_array,
                 :json_data #for debugging
 
-
     def initialize(json)
       @json_data = json["ccb_api"]
       @request_data = @json_data["request"]
       @response_data = @json_data["response"]
-      @service = @response_data["service"] #CCB service type accessed
-
-      @batches  = @response_data['batches']
+      
+      @service = @response_data["service_action"] #CCB service type accessed
+      @availability = @response_data["availability"]
+      @batches = @response_data['batches']
 
       @count = @batches["count"].to_i #number of records
       @batch_array = @batches["batch"].class == Array ? @batches["batch"] : [@batches["batch"]].compact #array of each batch
