@@ -3,8 +3,13 @@ module ChurchCommunityBuilder
   class Search
 
     # Returns a list of all individual profiles in the Church Community Builder system.
-    def self.all_individual_profiles
-      options = {url_data_params: {srv: 'individual_profiles'}}
+    #
+    # Specifying a date will return all batches created
+    # or modified since that date.
+    #
+    # Date format should be YYYY-MM-DD
+    def self.all_individual_profiles(modified_since = nil)
+      options = {url_data_params: {srv: 'individual_profiles', modified_since: modified_since}}
       reader = IndividualListReader.new(options)
       IndividualList.new(reader.load_feed)
     end    
