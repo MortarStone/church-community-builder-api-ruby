@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'typhoeus', '0.6.6'
+gem 'typhoeus', '~> 0.6.6'
 gem 'json'
 gem 'xml-simple'
 
