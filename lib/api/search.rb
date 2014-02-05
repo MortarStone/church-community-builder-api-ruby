@@ -25,6 +25,19 @@ module ChurchCommunityBuilder
       IndividualList.new(reader.load_feed)
     end
 
+    # Search CCB for individuals based off of the search parameters
+    # Note:
+    # Searches are performed as a LIKE query in the CCB database. 
+    # If the value provided for the criterion is found anywhere in the field,
+    # it will be considered a match.
+    def self.search_for_person(args = {})
+      args.assert_valid_keys(:first_name, :last_name, :phone, :email, 
+        :street, :city, :state, :zip, :include_inactive, :max_results)
+      options = {url_data_params: {srv: 'individual_search'}.merge(args)}
+      reader = IndividualListReader.new(options)
+      IndividualList.new(reader.load_feed)
+    end
+
     # Returns a list of all individuals in the Church Community Builder system.
     def self.search_for_all_valid_individuals
       options = {url_data_params: {srv: 'valid_individuals'}}
