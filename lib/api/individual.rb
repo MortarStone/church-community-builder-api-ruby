@@ -51,7 +51,8 @@ module ChurchCommunityBuilder
                       :contact_phone,
                       :home_phone,
                       :work_phone,
-                      :mobile_phone
+                      :mobile_phone,
+                      :allergies
 
 
     def initialize(json_data = nil)
