@@ -4,14 +4,28 @@ module ChurchCommunityBuilder
 
     # Returns a list of all individual profiles in the Church Community Builder system.
     #
-    # Specifying a date will return all batches created
+    # Specifying a date will return all individuals created
     # or modified since that date.
     #
     # Date format should be YYYY-MM-DD
     def self.all_individual_profiles(modified_since = nil)
-      options = {url_data_params: {srv: 'individual_profiles', modified_since: modified_since}}
+      options = {url_data_params: {srv: 'individual_profiles'}}
+      options[:url_data_params][:modified_since] = modified_since if modified_since
       reader = IndividualListReader.new(options)
       IndividualList.new(reader.load_feed)
+    end
+
+    # Returns a list of all group profiles in the Church Community Builder system.
+    #
+    # Specifying a date will return all groups created
+    # or modified since that date.
+    #
+    # Date format should be YYYY-MM-DD
+    def self.all_group_profiles(modified_since = nil)
+      options = {url_data_params: {srv: 'group_profiles'}}
+      options[:url_data_params][:modified_since] = modified_since if modified_since
+      reader = GroupListReader.new(options)
+      GroupList.new(reader.load_feed)
     end    
 
     # Search CCB for individuals based off of the search parameters
