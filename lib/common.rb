@@ -12,7 +12,7 @@ module ChurchCommunityBuilder
     when :post
       Typhoeus::Request.post(url, {:headers => headers, :body => body})
     when :get
-      Typhoeus::Request.get(url, params: params, userpwd: username+":"+password)
+      Typhoeus::Request.get(url, params: params.reject {|k,v| v.nil?}, userpwd: username+":"+password)
     when :put
       Typhoeus::Request.put(url, {:headers => headers, :body => body})
     when :delete

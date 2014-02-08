@@ -33,6 +33,11 @@ module ChurchCommunityBuilder
                       :created,
                       :modified
 
+    # extend for groups from individual_groups service
+    ccb_attr_accessor :receive_email_from_group,
+                      :receive_sms_from_group,
+                      :notify_comments
+
     def initialize(json_data = nil)
       #@writer_object = PersonWriter
       

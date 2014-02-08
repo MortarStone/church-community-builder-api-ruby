@@ -54,6 +54,16 @@ module ChurchCommunityBuilder
                       :mobile_phone,
                       :allergies
 
+    # extend for individual's from individual_groups service
+    ccb_attr_accessor :receive_email_from_church,
+                      :groups
+
+    def id=(value)
+      @id = value.to_i
+    end
+    def id
+      @id
+    end
 
     def initialize(json_data = nil)
       #@writer_object = PersonWriter
@@ -64,12 +74,12 @@ module ChurchCommunityBuilder
       else
         individual_json = json_data["ccb_api"]["response"]["individuals"]["individual"]
       end
-      
+
       initialize_from_json_object(individual_json) unless individual_json.nil?
 
       _set_addresses
       _set_phones
-
+      _set_groups(json_data["groups"])
     end
 
     def self.load_by_id(individual_id)
@@ -110,8 +120,7 @@ module ChurchCommunityBuilder
         when 'other'
           @other_address = Address.new(address)
         end
-
-      end
+      end if self.addresses
 
     end
 
@@ -128,9 +137,18 @@ module ChurchCommunityBuilder
         when 'mobile'
           @mobile_phone = phone["content"]
         end
+      end if self.phones
 
+    end
+
+    def _set_groups(json_data)
+      groups = []
+      if !json_data.nil?
+        json_data["group"].each do |g|
+          groups << Group.new(g)
+        end
       end
-
+      self.groups = groups
     end
 
   end
