@@ -58,6 +58,9 @@ module ChurchCommunityBuilder
     ccb_attr_accessor :receive_email_from_church,
                       :groups
 
+    # extend for significant events
+    ccb_attr_accessor :significant_events
+
     def id=(value)
       @id = value.to_i
     end
@@ -80,6 +83,7 @@ module ChurchCommunityBuilder
       _set_addresses
       _set_phones
       _set_groups(json_data["groups"])
+      _set_significant_events(json_data["significant_events"])
     end
 
     def self.load_by_id(individual_id)
@@ -87,6 +91,24 @@ module ChurchCommunityBuilder
       self.new(reader.load_feed)
     rescue
       nil
+    end
+
+    def load_groups
+      igs = Search.individual_groups(self.id)
+      if !igs.blank? and !igs[0].groups.blank?
+        self.groups = igs[0].groups 
+      end
+
+      self.groups
+    end
+
+    def load_significant_events
+      ise = Search.individual_significant_events(self.id)
+      if !ise.blank? and !ise[0].significant_events.blank?
+        self.significant_events = ise[0].significant_events
+      end
+
+      self.significant_events
     end
 
     def family_id
@@ -149,6 +171,16 @@ module ChurchCommunityBuilder
         end
       end
       self.groups = groups
+    end
+
+    def _set_significant_events(json_data)
+      events = []
+      if !json_data.nil?
+        json_data["significant_event"].each do |e|
+          events << { id: e["id"], name: e["name"], date: e["date"] }
+        end
+      end
+      self.significant_events = events
     end
 
   end
