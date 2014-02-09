@@ -27,7 +27,7 @@ module ChurchCommunityBuilder
       raise ChurchCommunityBuilderExceptions::ChurchCommunityBuilderResponseError.new(response.body)
     elsif !response.success?
       if response.code > 0
-        raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new(response.body)
+        raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new("Response Code: #{response.code}\n#{response.body}")
       else
         begin
           error_messages = JSON.parse(response.body)['error_message']
