@@ -175,7 +175,7 @@ module ChurchCommunityBuilder
 
     def _set_significant_events(json_data)
       events = []
-      if !json_data.nil?
+      if !json_data.nil? and !json_data["significant_event"].blank?
         json_data["significant_event"].each do |e|
           events << { id: e["id"], name: e["name"], date: e["date"] }
         end
