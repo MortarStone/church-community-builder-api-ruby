@@ -8,8 +8,10 @@ module ChurchCommunityBuilder
     # or modified since that date.
     #
     # Date format should be YYYY-MM-DD
-    def self.all_individual_profiles(modified_since = nil)
-      options = {url_data_params: {srv: 'individual_profiles', modified_since: modified_since }}
+    def self.all_individual_profiles(modified_since = nil, include_inactive = false)
+      options = {url_data_params: {srv: 'individual_profiles', 
+        modified_since: modified_since,
+        include_inactive: include_inactive }}
       reader = IndividualListReader.new(options)
       IndividualList.new(reader.load_feed)
     end
@@ -31,6 +33,15 @@ module ChurchCommunityBuilder
     # Specifying an individual_id will return all groups for that individual.
     def self.individual_groups(individual_id = nil)
       options = {url_data_params: {srv: 'individual_groups', individual_id: individual_id }}
+      reader = IndividualListReader.new(options)
+      IndividualList.new(reader.load_feed)
+    end    
+
+    # Returns a list of individual-significant-event profiles in the Church Community Builder system.
+    #
+    # Specifying an individual_id will return all groups for that individual.
+    def self.individual_significant_events(individual_id)
+      options = {url_data_params: {srv: 'individual_significant_events', id: individual_id }}
       reader = IndividualListReader.new(options)
       IndividualList.new(reader.load_feed)
     end    

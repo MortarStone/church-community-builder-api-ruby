@@ -27,7 +27,9 @@ module ChurchCommunityBuilder
       # {KeepRoot: true, ForceArray: false, SuppressEmpty: true} were set to 
       # maximize compatibility with Hash.from_xml, used previously.
       #
-      XmlSimple.xml_in(xml, {KeepRoot: true, ForceArray: ["family_member"], SuppressEmpty: true})
+      XmlSimple.xml_in(xml, {KeepRoot: true, 
+        ForceArray: ["family_member"], 
+        SuppressEmpty: true})
     end
 
   end
