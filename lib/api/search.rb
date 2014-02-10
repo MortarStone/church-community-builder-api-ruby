@@ -39,8 +39,8 @@ module ChurchCommunityBuilder
 
     # Returns a list of individual-significant-event profiles in the Church Community Builder system.
     #
-    # Specifying an individual_id will return all groups for that individual.
-    def self.individual_significant_events(individual_id)
+    # Specifying an individual_id will return all significant events for that individual.
+    def self.individual_significant_events(individual_id = nil)
       options = {url_data_params: {srv: 'individual_significant_events', id: individual_id }}
       reader = IndividualListReader.new(options)
       IndividualList.new(reader.load_feed)
