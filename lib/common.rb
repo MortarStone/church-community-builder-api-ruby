@@ -25,6 +25,8 @@ module ChurchCommunityBuilder
     #   "response"=>{"error"=>{"number"=>"005", "type"=>"Service Permission", "content"=>"Query limit of '10000' reached, please try again tomorrow."}}}}
     if response.body.include?('Query limit of \'10000\' reached, please try again tomorrow.')
       raise ChurchCommunityBuilderExceptions::ChurchCommunityBuilderResponseError.new(response.body)
+    elsif response.body.include?('<error number="002" type="Service Permission">Invalid username or password.</error>')
+      raise ChurchCommunityBuilderExceptions::InvalidApiCredentials.new(response.body)
     elsif !response.success?
       if response.code > 0
         raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new("Response Code: #{response.code}\n#{response.body}")
