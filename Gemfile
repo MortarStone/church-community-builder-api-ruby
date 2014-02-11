@@ -8,6 +8,6 @@ group :development, :test do
   gem 'colored'
   #gem 'autotest'
   gem 'rspec'
-  gem 'debugger'
+  #gem 'debugger'
   gem 'factory_girl'
 end

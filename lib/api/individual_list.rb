@@ -32,8 +32,28 @@ module ChurchCommunityBuilder
       elsif @individuals["individual"].is_a?(Hash)
         @individual_array = []
         @individual_array << @individuals["individual"] #array of each individual
+
+        @individual_array.sort_by! {|e| e["id"].to_i}
       end
 
+    end
+
+    # use iterative binary search algorithm to find item by id
+    def find_by_id(id)
+      min = 0
+      max = @individual_array.count
+      while max >= min do
+        mid = ((max - min) / 2 + min).floor
+        value = @individual_array[mid]["id"].to_i
+        return self[mid] if id == value
+        if value < id
+          min = mid + 1
+        else 
+          max = mid - 1
+        end
+      end
+
+      return nil
     end
 
     def all_names

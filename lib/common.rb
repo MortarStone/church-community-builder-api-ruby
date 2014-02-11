@@ -12,7 +12,7 @@ module ChurchCommunityBuilder
     when :post
       Typhoeus::Request.post(url, {:headers => headers, :body => body})
     when :get
-      Typhoeus::Request.get(url, params: params, userpwd: username+":"+password)
+      Typhoeus::Request.get(url, params: params.reject {|k,v| v.nil?}, userpwd: username+":"+password)
     when :put
       Typhoeus::Request.put(url, {:headers => headers, :body => body})
     when :delete
@@ -23,11 +23,18 @@ module ChurchCommunityBuilder
     # {"ccb_api"=>{"request"=>{"parameters"=>{"argument"=>[{"name"=>"srv", "value"=>"batch_profiles_in_date_range"}, 
     #   {"name"=>"date_start", "value"=>"2013-03-11"}, {"name"=>"date_end", "value"=>"2013-04-10"}]}}, 
     #   "response"=>{"error"=>{"number"=>"005", "type"=>"Service Permission", "content"=>"Query limit of '10000' reached, please try again tomorrow."}}}}
+
     if response.body.include?('Query limit of \'10000\' reached, please try again tomorrow.')
-      raise ChurchCommunityBuilderExceptions::ChurchCommunityBuilderResponseError.new(response.body)
+      raise ChurchCommunityBuilderExceptions::QuotaExceeded.new(response.body)
+    elsif response.body.include?('<error number="002" type="Service Permission">Invalid username or password.</error>')
+      raise ChurchCommunityBuilderExceptions::InvalidApiCredentials.new(response.body)
+    elsif response.timed_out?
+      raise ChurchCommunityBuilderExceptions::TimedOut.new(response.body)
+    elsif response.code == 0 
+      raise ChurchCommunityBuilderExceptions::NoResponse.new(response.body)
     elsif !response.success?
       if response.code > 0
-        raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new(response.body)
+        raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new("Response Code: #{response.code}\n#{response.body}")
       else
         begin
           error_messages = JSON.parse(response.body)['error_message']

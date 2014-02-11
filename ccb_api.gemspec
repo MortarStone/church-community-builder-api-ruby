@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   PROJECT_GEM = 'church-community-builder'
-  PROJECT_GEM_VERSION = '0.1.5'
+  PROJECT_GEM_VERSION = '0.1.6'
   
   s.name = PROJECT_GEM
   s.version = PROJECT_GEM_VERSION
@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.homepage = 'https://github.com/weshays/church-community-builder-api-ruby'
   s.rubyforge_project = 'Project on www.github.com'
-  s.authors = ['Wes Hays', 'Chad Feller']
+  s.authors = ['Wes Hays', 'Chad Feller', 'Marvin Frederickson']
   s.email = ['weshays@gbdev.com','feller@cs.unr.edu']
 
   s.summary = 'Ruby gem/plugin to interact with the Church Community Builder API.'
