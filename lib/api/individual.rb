@@ -66,6 +66,7 @@ module ChurchCommunityBuilder
       
       initialize_from_json_object(individual_json) unless individual_json.nil?
 
+      _set_active_flag
       _set_addresses
       _set_phones
 
@@ -96,8 +97,13 @@ module ChurchCommunityBuilder
 
     private
 
-    def _set_addresses
 
+    def _set_active_flag
+      @active = @active.to_s.downcase == 'false' ? false : true
+    end
+
+
+    def _set_addresses
       self.addresses["address"].each do |address|
         case address["type"]
         when 'mailing'
@@ -111,11 +117,10 @@ module ChurchCommunityBuilder
         end
 
       end
-
     end
 
-    def _set_phones
 
+    def _set_phones
       self.phones["phone"].each do |phone|
         case phone["type"]
         when 'contact'
@@ -127,9 +132,7 @@ module ChurchCommunityBuilder
         when 'mobile'
           @mobile_phone = phone["content"]
         end
-
       end
-
     end
 
   end
