@@ -7,16 +7,22 @@ module ChurchCommunityBuilder
       options = {url_data_params: {srv: 'individual_profiles'}}
       reader = IndividualListReader.new(options)
       IndividualList.new(reader.load_feed)
-    end    
+    end
 
     # Search CCB for individuals based off of the search parameters
     # Note:
-    # Searches are performed as a LIKE query in the CCB database. 
+    # Searches are performed as a LIKE query in the CCB database.
     # If the value provided for the criterion is found anywhere in the field,
     # it will be considered a match.
     def self.search_for_person_by_name(last_name = nil,first_name = nil)
       options = {url_data_params: {srv: 'individual_search', last_name: last_name, first_name: first_name}}
       reader = IndividualListReader.new(options)
+      IndividualList.new(reader.load_feed)
+    end
+
+    def self.search_for_person_by_email(email)
+      options = {url_data_params: {srv: 'individual_search', email: email}}
+      reader  = IndividualListReader.new(options)
       IndividualList.new(reader.load_feed)
     end
 
@@ -52,9 +58,9 @@ module ChurchCommunityBuilder
     end
 
     def self.search_for_batch_by_id(batch_id)
-      # options = {:url_data_params => {srv: "batch_profile_from_id", 
+      # options = {:url_data_params => {srv: "batch_profile_from_id",
       #                                 id: batch_id
-      #                                 } 
+      #                                 }
       #           }
       reader = BatchReader.new(batch_id)
       Batch.new(reader.load_feed)
