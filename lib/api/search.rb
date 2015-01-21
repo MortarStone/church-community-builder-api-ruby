@@ -68,6 +68,13 @@ module ChurchCommunityBuilder
       CampusList.new(reader.load_feed)
     end
 
+    # This is currently undocumented, but found via spelunking
+    #
+    def self.search_for_all_funds
+      reader = FundListReader.new
+      FundList.new(reader.load_feed)
+    end
+
   end
 
 end

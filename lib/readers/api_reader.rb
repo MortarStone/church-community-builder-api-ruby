@@ -11,14 +11,12 @@ module ChurchCommunityBuilder
     # Loads the list
     #
     # @return the data loaded in a JSON object.
-    def load_feed
-   
-        @url_data_params ||= {}
-        response = ChurchCommunityBuilder::admin_request(:get, @url_data_params)
-        data = _xml2json(response.body)
-        @headers = response.headers
-  
-        return data
+    def load_feed 
+      @url_data_params ||= {}
+      response = ChurchCommunityBuilder::admin_request(:get, @url_data_params)
+      data = _xml2json(response.body)
+      @headers = response.headers
+      return data
     end
 
     private
