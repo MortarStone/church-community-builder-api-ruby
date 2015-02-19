@@ -24,7 +24,9 @@ module ChurchCommunityBuilder
     #   {"name"=>"date_start", "value"=>"2013-03-11"}, {"name"=>"date_end", "value"=>"2013-04-10"}]}}, 
     #   "response"=>{"error"=>{"number"=>"005", "type"=>"Service Permission", "content"=>"Query limit of '10000' reached, please try again tomorrow."}}}}
     if response.body.include?('Query limit of \'10000\' reached, please try again tomorrow.')
-      raise ChurchCommunityBuilderExceptions::ChurchCommunityBuilderResponseError.new(response.body)
+      raise ChurchCommunityBuilderExceptions::ChurchCommunityBuilderResponseError.new("Query limit of 10000 reached, please try again tomorrow.")
+    elsif response.body.include?('You do not have permission to use this service.')
+      raise ChurchCommunityBuilderExceptions::ChurchCommunityBuilderResponseError.new("You do not have permission to use this service.")      
     elsif !response.success?
       if response.code > 0
         raise ChurchCommunityBuilderExceptions::UnableToConnectToChurchCommunityBuilder.new(response.body)
