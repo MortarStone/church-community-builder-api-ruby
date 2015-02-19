@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   PROJECT_GEM = 'church-community-builder'
-  PROJECT_GEM_VERSION = '0.2.0'
+  PROJECT_GEM_VERSION = '0.2.1'
   
   s.name = PROJECT_GEM
   s.version = PROJECT_GEM_VERSION
