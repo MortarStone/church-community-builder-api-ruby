@@ -41,7 +41,7 @@ GEM
     typhoeus (0.6.6)
       ethon (~> 0.6.1)
     tzinfo (0.3.38)
-    xml-simple (1.1.2)
+    xml-simple (1.1.4)
 
 PLATFORMS
   ruby
@@ -53,4 +53,4 @@ DEPENDENCIES
   json
   rspec
   typhoeus (= 0.6.6)
-  xml-simple
+  xml-simple (= 1.1.4)
